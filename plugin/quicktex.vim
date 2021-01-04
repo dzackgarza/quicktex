@@ -28,6 +28,6 @@ function! AssignExpander()
     " function to the trigger.
     if exists("g:enable_quicktex")
         execute('inoremap <silent> <buffer> '.trigger.
-                    \' <C-r>=quicktex#expand#ExpandWord()<CR>')
+                    \' <C-r>=quicktex#expand#ExpandWord("dummy_var")<CR>')
     endif
 endfunction

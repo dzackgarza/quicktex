@@ -2,10 +2,36 @@
 > (DZG): This is a fork specifically geared toward pandoc using the pandoc.markdown file format (see pandoc-syntax plugin).
 > I've changed this so there is just two global dictionaries, g:quicktex_prose and g:quicktex_math (used in usual text and math mode respectively) which apply to all file types. 
 > It's disabled by default, and to enable it with a certain filetype, just do something like
->
-> autocmd Filetype markdown.pandoc let g:enable_quicktex = 1
 
+Example
+```
+autocmd Filetype markdown.pandoc let g:enable_quicktex = 1
 
+let g:quicktex_prose = {
+    \' '   : "\<ESC>:call search('<+.*+>')\<CR>\"_c/+>/e\<CR>",
+    \'m'   : '\( <+++> \) <++>',
+    \'M'   : "\\[\<CR><+++>\<CR>.\\]\<CR><++>",
+    \'thm' : ":::{.theorem title=\"?\"}\<CR><+++>\<CR>:::",
+    \'rep'    : 'representation ',
+    \'comm'   : 'commutative ',
+    \'ab'     : 'abelian ',
+    \'cat'    : 'category ',
+    \'mod'    : "\<BS>-module ",
+    \'aka'    : 'a.k.a.'
+\}
+
+let g:quicktex_math = {
+    \' '    : "\<ESC>:call search('<+.*+>')\<CR>\"_c/+>/e\<CR>",
+    \'fr'   : '\mathcal{R} ',
+    \'eq'   : '= ',
+    \'set'  : '\{ <+++> \} <++>',
+    \'frac' : '\frac{<+++>}{<++>} <++>',
+    \'one'  : '1 ',
+    \'st'   : ': ',
+    \'in'   : '\in ',
+    \'bn'   : '\mathbb{N} ',
+\}
+```
 
 ## QuickTex is a template expander for quickly writing LaTeX
 
