@@ -1,12 +1,27 @@
 
-> (DZG): This is a fork specifically geared toward pandoc using the pandoc.markdown file format (see pandoc-syntax plugin).
-> I've changed this so there is just two global dictionaries, g:quicktex_prose and g:quicktex_math (used in usual text and math mode respectively) which apply to all file types. 
-> It's disabled by default, and to enable it with a certain filetype, just do something like
+# QuickTex Fork
 
-Example
+## (DZG) Changes to Original QuickTex
+
+This is a fork specifically geared toward pandoc using the *pandoc.markdown* file format (see pandoc-syntax plugin).
+This is an issue in the original repo because it's not clear how to use periods in the variable name for file types.
+So I've changed things around and taken a different approach to defining dictionaries using ftplugins.
+
+Major differences: there are now just two global dictionaries, *g:quicktex_prose* and *g:quicktex_math* (used in usual text and math mode respectively) which apply to all file types. 
+**QuickTex now disabled by default on all file types**! 
+
+To enable it with a certain filetype, just do something like this in your vimrc:
+
 ```
 autocmd Filetype markdown.pandoc let g:enable_quicktex = 1
+```
 
+And create your dictionary in 
+
+- `~/.config/nvim/after/ftplugin/pandoc/quicktex_dict.vim` for NeoVim or 
+- `~/.vim/after/ftplugin/pandoc/quicktex_dict.vim` for usual Vim:
+
+```
 let g:quicktex_prose = {
     \' '   : "\<ESC>:call search('<+.*+>')\<CR>\"_c/+>/e\<CR>",
     \'m'   : '\( <+++> \) <++>',
@@ -32,6 +47,19 @@ let g:quicktex_math = {
     \'bn'   : '\mathbb{N} ',
 \}
 ```
+
+The original plugin works for tex, but if you wanted to use this version for some reason, you'd do a similar thing:
+
+```
+autocmd Filetype tex let g:enable_quicktex = 1
+```
+
+
+And create your dictionary in (I think)
+
+- `~/.config/nvim/after/ftplugin/tex/quicktex_dict.vim` for NeoVim or 
+- `~/.vim/after/ftplugin/tex/quicktex_dict.vim` for usual Vim:
+
 
 ## QuickTex is a template expander for quickly writing LaTeX
 
