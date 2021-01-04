@@ -1,6 +1,10 @@
 
 # QuickTex Fork
 
+## (DZG) My Dictionary
+
+<https://github.com/dzackgarza/dotfiles/blob/master/.config-sync/nvim/after/ftplugin/pandoc/quicktex_dict.vim />
+
 ## (DZG) Changes to Original QuickTex
 
 This is a fork specifically geared toward pandoc using the *pandoc.markdown* file format (see pandoc-syntax plugin).
@@ -59,6 +63,7 @@ And create your dictionary in (I think)
 
 - `~/.config/nvim/after/ftplugin/tex/quicktex_dict.vim` for NeoVim or 
 - `~/.vim/after/ftplugin/tex/quicktex_dict.vim` for usual Vim:
+
 
 
 ## QuickTex is a template expander for quickly writing LaTeX
