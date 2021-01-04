@@ -1,11 +1,13 @@
 function! quicktex#expand#ExpandWord(ft)
+    " Just ignore input.
+    let l:ft_rep = "prose"
     " Get the current line up to the cursor position
     let line = strpart(getline('.'), 0, col('.')-1)
 
     " If the last character was a space, then return a space as the keyword.
     " The colon is necessary when indexing with negative numbers. Otherwise,
     " part the string at the last space. This will be the last word typed.
-    " Note that if there is no space, strridx returns -1, which all works out.
+    " Note that if there is no space, strridx returns 0, which all works out.
     let word = (line[-1:] == ' ') ? ' ' : split(line, '\s', 1)[-1]
 
     " Cuts the word so that it only contains valid keyword characters.
@@ -13,13 +15,12 @@ function! quicktex#expand#ExpandWord(ft)
     " Default value: ['(','{','[']
     let word = split(word, join(g:quicktex_excludechar, '\|'), 1)[-1]
 
-    " If the filetype is tex and you're in mathmode, then use that dictionary.
-    " Otherwise, use the filetype dictionary. If there is no entry, just set
-    " result to ''.
-    if (a:ft == 'tex' || a:ft == 'pandoc') && quicktex#mathmode#InMathMode()
+    " If the filetype is tex and you're in mathmode, then use the dictionary.
+    echo &filetype
+    if quicktex#mathmode#InMathMode()
         let result = get(g:quicktex_math, word, '')
     else
-        execute('let result = get(g:quicktex_'.a:ft.', word, "")')
+        execute('let result = get(g:quicktex_'.l:ft_rep.', word, "")')
     endif
 
     " If there is no result found in the dictionary, then return the original

@@ -1,3 +1,12 @@
+
+> (DZG): This is a fork specifically geared toward pandoc using the pandoc.markdown file format (see pandoc-syntax plugin).
+> I've changed this so there is just two global dictionaries, g:quicktex_prose and g:quicktex_math (used in usual text and math mode respectively) which apply to all file types. 
+> It's disabled by default, and to enable it with a certain filetype, just do something like
+>
+> autocmd Filetype markdown.pandoc let g:enable_quicktex = 1
+
+
+
 ## QuickTex is a template expander for quickly writing LaTeX
 
 Before anything else, here's a real-time demonstration of what QuickTex can do:
